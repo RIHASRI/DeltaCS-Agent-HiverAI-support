@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Air Lines (@Delta) AI Customer Support Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Bar -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="logo-box">
+                    <i class="fa-solid fa-plane-up"></i>
+                </div>
+                <div>
+                    <h1>Delta Air Lines <span class="badge-ai">AI CS Command Center</span></h1>
+                    <p class="subtitle">Real-time Intent Classification, Escalation Routing & Tone Conditioning Engine</p>
+                </div>
+            </div>
+            <div class="nav-status">
+                <span class="status-indicator online"></span>
+                <span class="status-text">System Active</span>
+                <button id="btn-run-benchmark" class="btn btn-secondary">
+                    <i class="fa-solid fa-chart-line"></i> Run Benchmark
+                </button>
+            </div>
+        </header>
+
+        <!-- KPI Summary Metrics Banner -->
+        <section class="kpi-banner">
+            <div class="kpi-card">
+                <div class="kpi-icon blue"><i class="fa-solid fa-bullseye"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-title">Intent Accuracy</span>
+                    <span class="kpi-value" id="kpi-accuracy">100.0%</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon red"><i class="fa-solid fa-layer-group"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-title">Macro F1-Score</span>
+                    <span class="kpi-value" id="kpi-f1">1.000</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon gold"><i class="fa-solid fa-scale-balanced"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-title">LLM Judge Quality</span>
+                    <span class="kpi-value" id="kpi-judge">5.0 / 5.0</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon green"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-title">Escalation Accuracy</span>
+                    <span class="kpi-value" id="kpi-escalation">100.0%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Workspace -->
+        <main class="workspace-grid">
+            <!-- Left Panel: Interactive Twitter Customer Support Simulator -->
+            <section class="card panel-chat">
+                <div class="card-header">
+                    <h2><i class="fa-brands fa-x-twitter"></i> Customer Query Simulator (@Delta)</h2>
+                    <span class="tag-live">LIVE REPL</span>
+                </div>
+                
+                <!-- Quick Sample Query Chips -->
+                <div class="sample-chips">
+                    <span class="chip-label">Preset Scenarios:</span>
+                    <button class="chip" onclick="setQuery('My flight DL1421 from ATL to JFK is delayed by 4 hours! I am going to miss my connection!')">
+                        ⚡ Flight Delay DL1421
+                    </button>
+                    <button class="chip" onclick="setQuery('Landed in SLC from DL812 and my luggage never arrived. Tag #DL983211.')">
+                        🧳 Lost Baggage
+                    </button>
+                    <button class="chip" onclick="setQuery('Want to upgrade my seat on DL302 from Main Cabin to Comfort+. How many SkyMiles?')">
+                        💺 Seat Upgrade
+                    </button>
+                    <button class="chip" onclick="setQuery('DL142 was cancelled. I filled the refund form 3 weeks ago and still no payment! Ref #RF-99182.')">
+                        💳 Delayed Refund
+                    </button>
+                    <button class="chip chip-danger" onclick="setQuery('Stuck on tarmac in MSP for 3 hours on DL1104! Passengers are starving and need medical attention!')">
+                        🚨 Tarmac Medical Emergency
+                    </button>
+                </div>
+
+                <!-- Query Input Form -->
+                <div class="input-section">
+                    <textarea id="query-input" placeholder="Type customer tweet or query here (e.g., 'DL502 delayed by 2 hours...')..."></textarea>
+                    <div class="input-controls">
+                        <div class="param-selectors">
+                            <label>Complexity:
+                                <select id="sel-complexity">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </label>
+                            <label>Urgency:
+                                <select id="sel-urgency">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </label>
+                            <label>Sentiment:
+                                <select id="sel-sentiment">
+                                    <option value="neutral">Neutral</option>
+                                    <option value="negative">Negative</option>
+                                    <option value="frustrated" selected>Frustrated</option>
+                                    <option value="positive">Positive</option>
+                                </select>
+                            </label>
+                        </div>
+                        <button id="btn-submit" class="btn btn-primary">
+                            <i class="fa-solid fa-paper-plane"></i> Analyze & Generate
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Activity Feed -->
+                <div class="chat-feed" id="chat-feed">
+                    <div class="chat-placeholder">
+                        <i class="fa-regular fa-comments"></i>
+                        <p>Select a preset scenario above or enter a customer tweet to see real-time AI classification, routing, and tone generation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: AI Inspector & Decision Diagnostics -->
+            <section class="card panel-inspector">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-microscope"></i> AI Decision Inspector</h2>
+                    <span class="inspector-badge" id="insp-intent-badge">Awaiting Query</span>
+                </div>
+
+                <!-- Context Entity Extraction -->
+                <div class="inspector-section">
+                    <h3 class="section-title"><i class="fa-solid fa-fingerprint"></i> Context Entity Extraction</h3>
+                    <div class="entity-tags" id="entity-container">
+                        <span class="entity-tag placeholder">No query analyzed yet</span>
+                    </div>
+                </div>
+
+                <!-- Intent Probability Distribution -->
+                <div class="inspector-section">
+                    <h3 class="section-title"><i class="fa-solid fa-chart-bar"></i> Intent Classification Distribution</h3>
+                    <div class="intent-bars" id="intent-bars-container">
+                        <div class="intent-bar-row">
+                            <span class="intent-name">flight_delay_cancellation</span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <span class="intent-pct">0.0%</span>
+                        </div>
+                        <div class="intent-bar-row">
+                            <span class="intent-name">baggage_issue</span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <span class="intent-pct">0.0%</span>
+                        </div>
+                        <div class="intent-bar-row">
+                            <span class="intent-name">booking_seat_change</span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <span class="intent-pct">0.0%</span>
+                        </div>
+                        <div class="intent-bar-row">
+                            <span class="intent-name">refund_compensation</span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <span class="intent-pct">0.0%</span>
+                        </div>
+                        <div class="intent-bar-row">
+                            <span class="intent-name">checkin_boarding</span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <span class="intent-pct">0.0%</span>
+                        </div>
+                        <div class="intent-bar-row">
+                            <span class="intent-name">general_inquiry</span>
+                            <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <span class="intent-pct">0.0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Escalation Routing Card -->
+                <div class="inspector-section">
+                    <h3 class="section-title"><i class="fa-solid fa-shield-virus"></i> Safety Escalation Matrix</h3>
+                    <div class="escalation-card" id="escalation-card">
+                        <div class="esc-header">
+                            <span class="esc-decision badge-auto" id="esc-decision-badge">AUTO_REPLY</span>
+                            <span class="esc-risk" id="esc-risk-text">Risk Score: 0.00</span>
+                        </div>
+                        <div class="risk-bar-track">
+                            <div class="risk-bar-fill" id="risk-bar" style="width: 0%;"></div>
+                        </div>
+                        <h4 class="esc-reasons-title">Structured Audit Log:</h4>
+                        <ul class="esc-reasons-list" id="esc-reasons-list">
+                            <li>System ready for evaluation.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- LLM Judge Rubric Card -->
+                <div class="inspector-section">
+                    <h3 class="section-title"><i class="fa-solid fa-gavel"></i> LLM-as-a-Judge Evaluation Rubric</h3>
+                    <div class="rubric-grid" id="rubric-grid">
+                        <div class="rubric-box">
+                            <span class="r-name">Relevance</span>
+                            <span class="r-score" id="r-rel">5.0</span>
+                        </div>
+                        <div class="rubric-box">
+                            <span class="r-name">Tone & Empathy</span>
+                            <span class="r-score" id="r-tone">5.0</span>
+                        </div>
+                        <div class="rubric-box">
+                            <span class="r-name">Actionability</span>
+                            <span class="r-score" id="r-act">5.0</span>
+                        </div>
+                        <div class="rubric-box">
+                            <span class="r-name">Policy Safety</span>
+                            <span class="r-score" id="r-safe">5.0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Benchmark Results Modal Popup -->
+    <div class="modal-overlay" id="modal-benchmark">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-trophy"></i> Full Benchmark Evaluation Report</h2>
+                <button class="btn-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div class="loading-spinner"><i class="fa-solid fa-circle-notch fa-spin"></i> Loading benchmark metrics...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

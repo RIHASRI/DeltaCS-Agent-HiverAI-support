@@ -1,0 +1,245 @@
+{
+  "total_benchmark_samples": 200,
+  "intent_classification": {
+    "accuracy": 1.0,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "weighted_precision": 1.0,
+    "weighted_recall": 1.0,
+    "weighted_f1": 1.0,
+    "labels": [
+      "baggage_issue",
+      "booking_seat_change",
+      "checkin_boarding",
+      "flight_delay_cancellation",
+      "general_inquiry",
+      "refund_compensation"
+    ],
+    "confusion_matrix": [
+      [
+        34,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        34,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        34,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        34,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        34
+      ]
+    ],
+    "per_class": {
+      "baggage_issue": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 34
+      },
+      "booking_seat_change": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 34
+      },
+      "checkin_boarding": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 34
+      },
+      "flight_delay_cancellation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 34
+      },
+      "general_inquiry": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 30
+      },
+      "refund_compensation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 34
+      }
+    }
+  },
+  "escalation_accuracy": 0.885,
+  "text_quality_metrics": {
+    "mean_rouge_l": 0.5085405935188132,
+    "mean_bleu_1": 0.5731433974160336,
+    "mean_jaccard_similarity": 0.4374260176377119
+  },
+  "llm_judge_metrics": {
+    "mean_overall_score": 5.0
+  },
+  "inter_rater_agreement": {
+    "pearson_r": 1.0,
+    "mean_absolute_error": 0.26900000000000013,
+    "exact_agreement_ratio": 0.885,
+    "cohens_kappa_proxy": 0.8562500000000001
+  },
+  "sample_results": [
+    {
+      "id": "DL-GOLDEN-001",
+      "query": "My flight DL1421 from ATL to JFK is delayed by 4 hours! I am going to miss my international connection. Please help rebook me urgently!",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "HUMAN_ESCALATION",
+      "pred_escalation": "HUMAN_ESCALATION",
+      "generated_reply": "Hello! We sincerely apologize for the distress and frustration this situation has caused. We want to ensure your request regarding DL1421 is handled with top priority. Please DM us your 6-character confirmation code, full name, and phone number so a Delta Customer Care specialist can assist you directly.",
+      "rouge_l": 0.6067415730337078,
+      "bleu_1": 0.6530612244897959,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-002",
+      "query": "DL502 was cancelled without notice. What are my options for getting to Boston today?",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "AUTO_REPLY",
+      "pred_escalation": "AUTO_REPLY",
+      "generated_reply": "Hello! We apologize for the inconvenience you experienced with your travel plans. You can check real-time updates and self-service rebooking options for your flight regarding DL502 via the Fly Delta app or directly at https://www.delta.com/rebook. Please DM us if you have any additional questions! *Delta CS",
+      "rouge_l": 0.6236559139784946,
+      "bleu_1": 0.6730769230769231,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-003",
+      "query": "Why is DL889 delayed in Detroit? Will we get food vouchers?",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "AUTO_REPLY",
+      "pred_escalation": "AUTO_REPLY",
+      "generated_reply": "Hello! We apologize for the inconvenience you experienced with your travel plans. You can check real-time updates and self-service rebooking options for your flight regarding DL889 via the Fly Delta app or directly at https://www.delta.com/rebook. Please DM us if you have any additional questions! *Delta CS",
+      "rouge_l": 0.6236559139784946,
+      "bleu_1": 0.6730769230769231,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-004",
+      "query": "DL210 delayed again due to weather. Is there another flight leaving Atlanta tonight?",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "AUTO_REPLY",
+      "pred_escalation": "AUTO_REPLY",
+      "generated_reply": "Hello! Thanks for reaching out to Delta Air Lines customer support. You can check real-time updates and self-service rebooking options for your flight regarding DL210 via the Fly Delta app or directly at https://www.delta.com/rebook. Please DM us if you have any additional questions! *Delta CS",
+      "rouge_l": 0.5652173913043477,
+      "bleu_1": 0.6274509803921569,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-005",
+      "query": "Stuck on the tarmac in MSP for 3 hours on DL1104. Passengers are starving and no updates!",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "HUMAN_ESCALATION",
+      "pred_escalation": "HUMAN_ESCALATION",
+      "generated_reply": "Hello! We sincerely apologize for the distress and frustration this situation has caused. We want to ensure your request regarding DL1104 is handled with top priority. Please DM us your 6-character confirmation code, full name, and phone number so a Delta Customer Care specialist can assist you directly.",
+      "rouge_l": 0.6067415730337078,
+      "bleu_1": 0.6530612244897959,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-006",
+      "query": "My flight DL994 was rescheduled to tomorrow morning. Can Delta provide hotel accommodations?",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "AUTO_REPLY",
+      "pred_escalation": "AUTO_REPLY",
+      "generated_reply": "Hello! We apologize for the inconvenience you experienced with your travel plans. You can check real-time updates and self-service rebooking options for your flight regarding DL994 via the Fly Delta app or directly at https://www.delta.com/rebook. Please DM us if you have any additional questions! *Delta CS",
+      "rouge_l": 0.6236559139784946,
+      "bleu_1": 0.6730769230769231,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-007",
+      "query": "Dl331 missed connection because of incoming flight delay. Need seat on DL442 immediately!",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "AUTO_REPLY",
+      "pred_escalation": "HUMAN_ESCALATION",
+      "generated_reply": "Hello! We sincerely apologize for the distress and frustration this situation has caused. We want to ensure your request regarding DL331 is handled with top priority. Please DM us your 6-character confirmation code, full name, and phone number so a Delta Customer Care specialist can assist you directly.",
+      "rouge_l": 0.22222222222222224,
+      "bleu_1": 0.30612244897959184,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-008",
+      "query": "Is DL601 operating on time from SEA to LAX today?",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "AUTO_REPLY",
+      "pred_escalation": "AUTO_REPLY",
+      "generated_reply": "Hello! Thanks for reaching out to Delta Air Lines customer support. You can check real-time updates and self-service rebooking options for your flight regarding DL601 via the Fly Delta app or directly at https://www.delta.com/rebook. Please DM us if you have any additional questions! *Delta CS",
+      "rouge_l": 0.5652173913043477,
+      "bleu_1": 0.6274509803921569,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-009",
+      "query": "DL778 delayed by 45 mins. Will baggage make it to the connecting flight DL112?",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "AUTO_REPLY",
+      "pred_escalation": "AUTO_REPLY",
+      "generated_reply": "Hello! Thanks for reaching out to Delta Air Lines customer support. You can check real-time updates and self-service rebooking options for your flight regarding DL778 via the Fly Delta app or directly at https://www.delta.com/rebook. Please DM us if you have any additional questions! *Delta CS",
+      "rouge_l": 0.5652173913043477,
+      "bleu_1": 0.6274509803921569,
+      "judge_score": 5.0
+    },
+    {
+      "id": "DL-GOLDEN-010",
+      "query": "DL409 cancelled. The app says no flights till Tuesday. That's unacceptable, I have a medical emergency!",
+      "true_intent": "flight_delay_cancellation",
+      "pred_intent": "flight_delay_cancellation",
+      "true_escalation": "HUMAN_ESCALATION",
+      "pred_escalation": "HUMAN_ESCALATION",
+      "generated_reply": "Hello! We sincerely apologize for the distress and frustration this situation has caused. We want to ensure your request regarding DL409 is handled with top priority. Please DM us your 6-character confirmation code, full name, and phone number so a Delta Customer Care specialist can assist you directly.",
+      "rouge_l": 0.6067415730337078,
+      "bleu_1": 0.6530612244897959,
+      "judge_score": 5.0
+    }
+  ]
+}
