@@ -2,6 +2,8 @@
 
 An end-to-end, production-ready AI Customer Support Agent pipeline for Delta Air Lines (`@Delta`), built on Twitter customer support conversation paradigms.
 
+![Delta AI Agent Web Command Center](docs/dashboard_preview.png)
+
 ## Features
 
 - **Intent Classifier**: Multi-class intent prediction (`flight_delay_cancellation`, `baggage_issue`, `booking_seat_change`, `refund_compensation`, `checkin_boarding`, `general_inquiry`) with full evaluation metrics (Accuracy, F1, Precision, Recall, Confusion Matrix).
@@ -33,6 +35,14 @@ python main.py --mode interactive
 # Run test suite
 pytest
 ```
+
+## Deliverables
+
+1. **Runnable Repository & Web Application Pipeline**: Complete source code with live REST API web dashboard (`web_server.py`), interactive CLI entrypoint (`main.py`), and modular package components under `src/`.
+2. **Golden Evaluation Set**: Curated 200-example benchmark dataset with intent, complexity, urgency, sentiment, reference replies, and escalation ground truth under `data/golden_benchmark.json`.
+3. **Evaluation Harness**: Multi-metric evaluator (`src/evaluator.py`) featuring automated n-gram metrics (BLEU, ROUGE-L), 4-dimension LLM-as-a-Judge scoring, and inter-rater agreement validation (Cohen's Kappa & Pearson $r$).
+4. **Technical Report**: Comprehensive methodology, architecture overview, baseline metrics, failure mode breakdown, and production roadmap under [`reports/technical_report.md`](reports/technical_report.md).
+5. **Decision Log**: 12 detailed engineering decision logs covering non-obvious trade-offs under [`reports/engineering_decision_log.md`](reports/engineering_decision_log.md).
 
 ## Minor Gaps to Fill & Model Caveats
 
@@ -75,6 +85,8 @@ While our model achieves **100.0% Accuracy and 1.000 F1 Score** on the golden be
 ├── data/
 │   ├── delta_tweets.json          # Preprocessed Twitter conversation pairs for @Delta
 │   └── golden_benchmark.json      # Curated 200-example golden benchmark dataset
+├── docs/
+│   └── dashboard_preview.png      # Web Application Dashboard Screenshot
 ├── src/
 │   ├── data_pipeline.py           # Preprocessing & golden dataset loader
 │   ├── intent_classifier.py       # Multi-class intent classifier & trainer
